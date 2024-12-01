@@ -18,7 +18,7 @@ with pd.read_csv(input_file, chunksize=chunk_size) as csv_reader:
             merchant_category_id = row["mcc"]
             state = row["merchant_state"]
             city = row["merchant_city"]
-            merchants.add(str(id) + "|" + str(merchant_category_id) + "|" + city + "|" + state)
+            merchants.add(str(id) + "|" + str(merchant_category_id) + "|" + city + "|" + str(state))
 
 print("Relevant fields extracted. Normalizing...\n")
 dataframe = pd.DataFrame(columns=["Id", "MerchantCategoryId", "CityId"])
