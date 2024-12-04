@@ -23,6 +23,7 @@ def process_chunk(chunk):
 chunk_size = 100000
 with pd.read_csv(input_file, chunksize=chunk_size) as csv_reader:
     with multiprocessing.Pool() as pool:
+        print("Beginning CSV processing")
         pool.map(process_chunk, csv_reader)
         
 
