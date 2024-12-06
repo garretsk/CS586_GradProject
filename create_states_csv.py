@@ -10,8 +10,5 @@ with pd.read_csv(input_file, chunksize=chunk_size) as csv_reader:
         for _, row in chunk.iterrows():
             states.add(row["merchant_state"])
 
-dataframe = pd.DataFrame(columns=["Id", "State"])
-for state in states:
-    dataframe.loc[len(dataframe)] = [len(dataframe), state]
-
+dataframe = pd.DataFrame({"Id": range(len(states)), "State": list(states)})
 dataframe.to_csv(output_file, index=False)

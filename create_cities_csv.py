@@ -18,9 +18,9 @@ with pd.read_csv(input_file, chunksize=chunk_size) as csv_reader:
                 state_id = result.iloc[0]["Id"]
                 cities.add(city + "|" + str(state_id))
 
-dataframe = pd.DataFrame(columns=["Id", "City", "StateId"])
-for city in cities:
-    mylist = city.split('|')
-    dataframe.loc[len(dataframe)] = [len(dataframe), mylist[0], mylist[1]]
+cities = list(cities)
+city_names = [city.split('|')[0] for city in cities]
+state_ids = [city.split('|')[1] for city in cities]
 
+dataframe = pd.DataFrame({"Id": range(len(cities)), "City": city_names, "StateId": state_ids})
 dataframe.to_csv(output_file, index=False)
